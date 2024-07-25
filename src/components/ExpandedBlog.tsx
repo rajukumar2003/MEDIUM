@@ -5,7 +5,7 @@ import { Avatar } from "./BlogCard"
 export const ExpandedBlog = ({ blog }: { blog: Blog }) => {
     return (
         <div>
-            <AppBar />
+            <AppBar publishBtn={true} />
             <div className="flex justify-center px-4 sm:px-6 lg:px-12">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 w-full pt-10 max-w-screen-xl">
                     <div className="md:col-span-8">

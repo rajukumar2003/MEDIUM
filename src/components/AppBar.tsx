@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom"
 
-export const AppBar = () => {
+
+interface AppBarProps {
+    publishBtn: boolean;
+}
+
+export const AppBar: React.FC<AppBarProps> = ({ publishBtn }) => {
     return (
-        <div className="border-b flex flex-wrap justify-between px-4 py-4 md:px-10">
+        <div className="border-b flex flex-wrap justify-between px-4 py-4 md:px-10 bg-[#f6f4edee]">
             <Link to={'/blogs/'} className="flex font-serif text-xl md:text-2xl font-extrabold cursor-pointer">
                 <div className="mr-2 md:mr-4 md:ml-8">
                     <svg width="40px" height="40px" viewBox="0 -55 256 256" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +20,10 @@ export const AppBar = () => {
             </Link>
 
             <Link to={'/publish'} className="mt-4 md:mt-0">
-                <button className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-black bg-[linear-gradient(110deg,#ffffff,45%,#d1d1d1,55%,#ffffff)] bg-[length:200%_100%] px-4 md:px-6 font-medium text-black transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-white">
+                <button className={`${publishBtn ===false ? 'hidden' : ''} inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-black 
+                bg-[linear-gradient(110deg,#ffffff,45%,#d1d1d1,55%,#ffffff)] bg-[length:200%_100%] px-4 md:px-6 font-medium text-black
+                transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-white`}>
+
                     Publish Your Own Blog
                 </button>
             </Link>

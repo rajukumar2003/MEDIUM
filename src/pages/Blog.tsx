@@ -13,7 +13,7 @@ export const Blog = () => {
 
     if (loading) {
         return <div>
-            <AppBar/>
+            <AppBar publishBtn={true} />
             <ExpandedBlogSkeleton/>
             
         </div>
