@@ -1,10 +1,13 @@
 export const LandingPage = () => {
     return (
-        <div className="bg-[#f6f4ed] min-h-screen">
-            <AppBar publishBtn={false} />
-            <div className="font-serif">
-                <TypewriterEffectSmoothDemo />
+        <div className="flex flex-col min-h-screen">
+            <div className="flex-grow bg-[#f6f4ed]">
+                <AppBar publishBtn={false} />
+                <div className="font-serif">
+                    <TypewriterEffectSmoothDemo />
+                </div>
             </div>
+            <Footer />
         </div>
     );
 };
@@ -13,6 +16,7 @@ export const LandingPage = () => {
 import { Link } from "react-router-dom";
 import { AppBar } from "../components/AppBar";
 import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import { Footer } from "../components/Footer";
 
 export function TypewriterEffectSmoothDemo() {
     const words = [
@@ -26,7 +30,7 @@ export function TypewriterEffectSmoothDemo() {
             text: "&",
         },
         {
-            text: "ideas",
+            text: "ideas ",
         },
         {
             text: "MEDIUM.",

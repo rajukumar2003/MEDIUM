@@ -8,11 +8,18 @@ interface BlogCardProps{
     id: string,
 };
 
+// Function to calculate reading time
+const calculateReadingTime = (content:string) => {
+    const wordsPerMinute = 170; // Average reading speed
+    const words = content.split(/\s+/).length; // Split content by spaces to get word count
+    const readingTime = Math.ceil(words / wordsPerMinute); // Calculate reading time in minutes
+    return readingTime;
+};
 
 export const BlogCard = ({ id, title, content, authorName, publishedDate }: BlogCardProps) => {
     return (
         <Link to={`/blog/${id}`}>
-            <div className=" border-b b-4 pb-4 pt-4 cursor-pointer">
+            <div className=" border-b b-4 pb-4 pt-4 cursor-pointer ">
                 <div className=" flex pb-2">
                     <div className=" flex justify-center flex-col">
                         <Avatar name={authorName} />
@@ -33,8 +40,8 @@ export const BlogCard = ({ id, title, content, authorName, publishedDate }: Blog
                 <div className=" text-md font-thin">
                     {content.slice(0, 100) + '...'}
                 </div>
-                <div className=" text-slate-400 text-sm font-thin pt-1">
-                    {`${Math.ceil(content.length / 100)} min read`}
+                <div className="text-slate-400 text-sm font-thin pt-1">
+                    {`${calculateReadingTime(content)} min read`}
                 </div>
                 
             </div>

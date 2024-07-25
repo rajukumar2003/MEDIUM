@@ -6,6 +6,7 @@ import { BACKEND_URL } from '../config';
 export const Publish = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [isDisabled, setIsDisabled] = useState(false);
     const navigate = useNavigate();
 
     return (
@@ -24,7 +25,6 @@ export const Publish = () => {
                     <div className="text-gray-400 ml-4">Saved</div>
                 </div>
                 <div className="flex items-center">
-                    {/* <button className="bg-green-600 text-white py-2 px-4 rounded-lg">Publish</button> */}
                     
                     <div className="ml-4 relative">
                         <button className="focus:outline-none">
@@ -62,17 +62,25 @@ export const Publish = () => {
                     ></textarea>
                     <div className=' flex justify-center '>
 
-                        <button onClick={async() => {
-                            const res = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
-                                title,
-                                content
-                            }, {
-                                headers: {
-                                    Authorization:localStorage.getItem('token')
-                                }
-                            });
-                            navigate(`/blog/${res.data.id}`)
+                        <button onClick={async () => {
+                            try {
+                                setIsDisabled(true);
+                                const res = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
+                                    title,
+                                    content
+                                }, {
+                                    headers: {
+                                        Authorization: localStorage.getItem('token')
+                                    }
+                                });
+                                navigate(`/blog/${res.data.id}`)
+                            } catch(e) {
+                                alert("Error publishing blog: " + e);
+                            } finally {
+                                setIsDisabled(false)
+                            }
                         }}
+                            disabled={isDisabled}
                             className="relative inline-block px-4 py-2 font-medium group ">
                             <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
