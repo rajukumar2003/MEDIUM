@@ -42,8 +42,10 @@ export const useBlog = ({ id }: { id: string }) => {
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Error fetching blog:", err);
-                setError("Error fetching blog");
+                const errorMessage = err.response?.data?.msg || "Error fetching blog";
+                console.error("Error fetching blog:", errorMessage);
+                setError(errorMessage);
+                alert(errorMessage);  
                 setLoading(false);
             });
     }, [id]);
