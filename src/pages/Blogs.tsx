@@ -1,7 +1,7 @@
 import { AppBar } from "../components/AppBar"
 import { BlogCard } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/BlogSkeleton";
-import { Footer } from "../components/Footer";
+// import { Footer } from "../components/Footer";
 import { useBlogs } from "../hooks"
 
 export const Blogs = () => {
